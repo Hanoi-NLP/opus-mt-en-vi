@@ -1,11 +1,17 @@
-FROM python:3.7-slim-buster
+# Use the official TensorFlow image as the base image
+FROM tensorflow/tensorflow:python
 
-RUN apt-get update && apt-get install -y build-essential libssl-dev libffi-dev python3-dev
-RUN pip install transformers Flask gunicorn
-
-COPY . /app
+# Set the working directory in the container
 WORKDIR /app
 
-COPY app.py .
+# Copy the current directory contents into the container at /app
+COPY . /app
 
-CMD gunicorn --workers 4 --bind 0.0.0.0:8080 app:app
+# Install necessary dependencies
+RUN pip install --no-cache-dir Flask gunicorn
+
+# Set the environment variable for running TensorFlow
+ENV PYTHONPATH "$PYTHONPATH:/app"
+
+# Command to run when the container starts
+CMD [ "gunicorn", "--workers=2", "--bind=0.0.0.0:8000", "wsgi:app" ]
