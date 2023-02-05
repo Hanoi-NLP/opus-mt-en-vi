@@ -8,6 +8,10 @@ tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 model = AutoModel.from_pretrained(MODEL_NAME)
 
 def translate(direction, text):
+    MODEL_NAME = "Helsinki-NLP/opus-mt-vi-en" if direction == "vi-en" else "Helsinki-NLP/opus-mt-en-vi"
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+    model = AutoModel.from_pretrained(MODEL_NAME)
+
     input_ids = tokenizer.encode(text, return_tensors="pt").to("cpu").tolist()[0]
     output = model.generate(input_ids)
     translated_text = tokenizer.decode(output[0], skip_special_tokens=True)
