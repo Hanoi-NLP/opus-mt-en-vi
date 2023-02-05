@@ -1,5 +1,5 @@
 # Use the official TensorFlow image as the base image
-FROM tensorflow/tensorflow:python
+FROM tensorflow/tensorflow
 
 # Set the working directory in the container
 WORKDIR /app
