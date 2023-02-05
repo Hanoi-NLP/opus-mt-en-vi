@@ -1,3 +1,6 @@
+```
+docker build https://github.com/Hanoi-NLP/opus-mt-en-vi.git#main
+```
 <h1>Installation and Usage</h1>
 
 <h2>Prerequisites</h2>
