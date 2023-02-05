@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <title>Translation App</title>
+  </head>
+  <body>
+    <h1>Translation App</h1>
+    <form method="post">
+      <input type="text" name="text">
+      <input type="submit" value="Translate">
+    </form>
+    {% if text %}
+    <p>Translated Text: {{ text }}</p>
+    {% endif %}
+  </body>
+</html>
