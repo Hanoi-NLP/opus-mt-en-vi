@@ -1,5 +1,5 @@
 # Use the Python base image from AWS ECR
-FROM 763104351884.dkr.ecr.us-west-2.amazonaws.com/python:3.9.0
+FROM public.ecr.aws/docker/library/python:latest
 
 # Set the working directory in the container
 WORKDIR /app
