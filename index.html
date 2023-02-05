@@ -1,19 +1,54 @@
+<!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <title>Translation App</title>
   </head>
-  <body>
-    <h1>Translation App</h1>
-    <form method="post">
-      <select name="direction">
-        <option value="en-vi">English to Vietnamese</option>
-        <option value="vi-en">Vietnamese to English</option>
-      </select>
-      <input type="text" name="text">
-      <input type="submit" value="Translate">
-    </form>
-    {% if text %}
-    <p>Translated Text: {{ text }}</p>
-    {% endif %}
+  <body class="bg-gray-100 h-screen">
+    <div class="container mx-auto h-full flex items-center justify-center">
+      <form action="/" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <h2 class="text-lg font-bold mb-4">Translation App</h2>
+        <div class="mb-4">
+          <label class="block text-gray-700 font-bold mb-2" for="input">
+            Input
+          </label>
+          <textarea
+            name="input"
+            id="input"
+            rows="5"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          ></textarea>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 font-bold mb-2" for="direction">
+            Direction
+          </label>
+          <select
+            name="direction"
+            id="direction"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          >
+            <option value="en-vi">English to Vietnamese</option>
+            <option value="vi-en">Vietnamese to English</option>
+          </select>
+        </div>
+        <div class="flex items-center justify-between">
+          <button
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="submit"
+          >
+            Translate
+          </button>
+        </div>
+      </form>
+      {% if output %}
+      <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <h2 class="text-lg font-bold mb-4">Output</h2>
+        <p class="text-gray-700">{{ output }}</p>
+      </div>
+      {% endif %}
+    </div>
   </body>
 </html>
