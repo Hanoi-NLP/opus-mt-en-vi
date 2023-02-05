@@ -1,17 +1,12 @@
-# Use the official TensorFlow image as the base image
-FROM tensorflow/tensorflow
+FROM tensorflow/tensorflow:2.5.0-py3
 
-# Set the working directory in the container
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 
-# Install necessary dependencies
-RUN pip install --no-cache-dir Flask gunicorn
+COPY wsgi.py .
 
-# Set the environment variable for running TensorFlow
-ENV PYTHONPATH "$PYTHONPATH:/app"
+EXPOSE 5000
 
-# Command to run when the container starts
-CMD [ "gunicorn", "--workers=2", "--bind=0.0.0.0:8000", "wsgi:app" ]
+CMD ["python", "wsgi.py"]
